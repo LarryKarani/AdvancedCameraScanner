@@ -13,7 +13,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 20,
     backgroundColor: "#59cbbd",
-    marginTop: 30
+    marginTop: 30,
+    borderRadius: 14,
+    
   },
   btntext: {
     color: '#fff',

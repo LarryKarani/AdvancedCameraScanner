@@ -1,21 +1,21 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Form } from "react-native";
 
 //components
-import InputBox from '../components/InputBox'
-import Button from '../components/Button'
-
+import InputBox from "../components/InputBox";
+import Button from "../components/Button";
+import ImageUploader from "../components/ImagePicker"
 export default function RegistrationScreen() {
   return (
     <View style={styles.regestrationForm}>
       <View style={styles.headerWrapper}>
         <Text style={styles.header}>Regestration</Text>
       </View>
+      <ImageUploader />
       <InputBox placeholder="Name" />
       <InputBox placeholder="Email" />
       <InputBox placeholder="Password" />
-      <Button text="Register"/>
-    
+      <Button text="Register" />
     </View>
   );
 }
