@@ -5,11 +5,15 @@ import { StyleSheet, Text, View, Form } from "react-native";
 import InputBox from "../components/InputBox";
 import Button from "../components/Button";
 import ImageUploader from "../components/ImagePicker"
+
+//styles
+import styles from '../constants/style'
+
 export default function RegistrationScreen() {
   return (
-    <View style={styles.regestrationForm}>
-      <View style={styles.headerWrapper}>
-        <Text style={styles.header}>Regestration</Text>
+    <View style={styles.container}>
+      <View style={ScreenStyles.headerWrapper}>
+        <Text style={ScreenStyles.header}>Register</Text>
       </View>
       <ImageUploader />
       <InputBox placeholder="Name" />
@@ -20,10 +24,7 @@ export default function RegistrationScreen() {
   );
 }
 
-const styles = StyleSheet.create({
-  regestrationForm: {
-    alignSelf: "stretch"
-  },
+const ScreenStyles = StyleSheet.create({
   headerWrapper: {
     borderBottomColor: "#199187",
     borderBottomWidth: 1,

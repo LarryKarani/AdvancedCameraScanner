@@ -1,0 +1,45 @@
+import React from "react";
+import MapView from "react-native-maps";
+import { StyleSheet, Text, View, Dimensions } from "react-native";
+
+export default class Navigation extends React.Component {
+  render() {
+    let markers = [
+      {
+        latitude: -1.219799,
+        longitude: 36.886331,
+        title: "Foo Place",
+        subtitle: "1234 Foo Drive"
+      }
+    ];
+    return (
+      <View style={styles.container}>
+        <MapView
+          style={styles.mapStyle}
+          annotations={markers}
+          region={{
+            latitude: -1.219799,
+            longitude: 36.886331,
+            title: "Foo Place",
+            subtitle: "1234 Foo Drive",
+            latitudeDelta: 0.0043,
+            longitudeDelta: 0.0034
+          }}
+        />
+      </View>
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  mapStyle: {
+    width: Dimensions.get("window").width,
+    height: Dimensions.get("window").height
+  }
+});

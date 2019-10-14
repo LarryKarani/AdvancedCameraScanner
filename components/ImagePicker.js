@@ -29,7 +29,7 @@ export default class ImageUploader extends React.Component {
       <View style={styles.container}>
         {image && <Image source={{ uri: image }} style={styles.image} />}
         <Text style={styles.btntext} onPress={this.pickImage}>
-          Upload profile
+          Upload image
         </Text>
       </View>
     );
