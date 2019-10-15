@@ -16,11 +16,18 @@ import * as Permissions from "expo-permissions";
 import uuid from "uuid";
 import Environment from "../config/environment";
 import firebase from "../config/firebase";
-export default class CameraScanner extends React.Component {
+import { withNavigation } from "react-navigation";
+
+
+class CameraScanner extends React.Component {
   state = {
     image: null,
     uploading: false,
     googleResponse: null
+  };
+
+  static navigationOptions = {
+    title: "Profile"
   };
 
   async componentDidMount() {
@@ -38,7 +45,9 @@ export default class CameraScanner extends React.Component {
       >
         <View style={styles.getStartedContainer}>
           {image ? null : (
-            <Text style={styles.getStartedText}>Google Cloud Vision</Text>
+            <TouchableOpacity style={styles.balance}>
+              <Text style={styles.getStartedText}>Balance $ 46</Text>
+            </TouchableOpacity>
           )}
         </View>
 
@@ -49,9 +58,14 @@ export default class CameraScanner extends React.Component {
 
         <View style={styles.bottom}>
           <TouchableOpacity style={styles.button} onPress={this._takePhoto}>
-            <Text style={styles.btntext}>Take a photo</Text>
+            <Text style={styles.btntext}>{!image ? "Scan" : "Scan again"}</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.button} onPress={this._pickImage}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => {
+              this.props.navigation.navigate("Table");
+            }}
+          >
             <Text style={styles.btntext}>Finish</Text>
           </TouchableOpacity>
         </View>
@@ -260,6 +274,8 @@ async function uploadImageAsync(uri) {
   return await snapshot.ref.getDownloadURL();
 }
 
+export default withNavigation(CameraScanner);
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -281,12 +297,24 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginHorizontal: 50
   },
-
+  balance: {
+    fontSize: 17,
+    color: "green",
+    lineHeight: 24,
+    textAlign: "center",
+    marginTop: 50,
+    fontWeight: "bold",
+    borderRadius: 20
+  },
   getStartedText: {
     fontSize: 17,
-    color: "rgba(96,100,109, 1)",
+    color: "green",
     lineHeight: 24,
-    textAlign: "center"
+    textAlign: "center",
+    marginTop: 20,
+    backgroundColor: "#fff",
+    padding: 9,
+    borderRadius: 8
   },
 
   helpContainer: {

@@ -1,20 +1,34 @@
 import React from "react";
-import { StyleSheet, Text, View, Image } from "react-native";
+import { StyleSheet, Text, View, Image} from "react-native";
+import { withNavigation } from "react-navigation";
 
-//component
+//components
 import Button from "../components/Button";
 
 //styles
 import styles from '../constants/style'
+class  HomeScreen extends React.Component {
+  render() {
+     return (
+       <View style={styles.container}>
+         <Image style={image.logo} source={require("../assets/logo.png")} />
+         <Button
+           text="Login"
+           onpress={() => {
+             this.props.navigation.navigate("Login");
+           }}
+         />
+         <Button
+           text="Register"
+           style={{ backgroundColor: "#263238" }}
+           onpress={() => {
+             this.props.navigation.navigate("Register");
+           }}
+         />
+       </View>
+     );
 
-export default function HomeScreen() {
-  return (
-    <View style={styles.container}>
-      <Image style={image.logo} source={require("../assets/logo.png")} />
-      <Button text="Login" />
-      <Button text="Register" style={{ backgroundColor: "#263238" }} />
-    </View>
-  );
+  }
 }
 
 const image = StyleSheet.create({
@@ -24,3 +38,5 @@ const image = StyleSheet.create({
     borderRadius: 50
   }
 });
+
+export default withNavigation(HomeScreen);

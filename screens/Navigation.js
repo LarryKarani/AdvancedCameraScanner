@@ -1,7 +1,6 @@
 import React from "react";
-import MapView from "react-native-maps";
 import { StyleSheet, Text, View, Dimensions } from "react-native";
-
+import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
 export default class Navigation extends React.Component {
   render() {
     let markers = [
@@ -15,6 +14,7 @@ export default class Navigation extends React.Component {
     return (
       <View style={styles.container}>
         <MapView
+          provider={PROVIDER_GOOGLE}
           style={styles.mapStyle}
           annotations={markers}
           region={{

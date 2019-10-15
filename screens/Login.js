@@ -5,24 +5,22 @@ import { withNavigation } from "react-navigation";
 //components
 import InputBox from "../components/InputBox";
 import Button from "../components/Button";
-import ImageUploader from "../components/ImagePicker";
+
 
 //styles
 import styles from "../constants/style";
 
-class RegistrationScreen extends React.Component {
+class Login extends React.Component {
   render() {
     return (
       <View style={styles.container}>
         <View style={ScreenStyles.headerWrapper}>
-          <Text style={ScreenStyles.header}>Register</Text>
+          <Text style={ScreenStyles.header}>Login</Text>
         </View>
-        <ImageUploader />
-        <InputBox placeholder="Name" />
         <InputBox placeholder="Email" />
         <InputBox placeholder="Password" />
         <Button
-          text="Register"
+          text="Login"
           onpress={() => {
             this.props.navigation.navigate("Profile");
           }}
@@ -47,4 +45,4 @@ const ScreenStyles = StyleSheet.create({
   }
 });
 
-export default withNavigation(RegistrationScreen);
+export default withNavigation(Login);

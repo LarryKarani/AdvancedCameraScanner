@@ -10,6 +10,7 @@ import RegestrationScreen from "./screens/RegestrationScreen";
 import CameraScanner from "./screens/CameraScanner";
 import HomeScreen from "./screens/HomeSreen";
 import Custom_Side_Menu from "./screens/SideMenuScreen";
+import Login from "./screens/Login";
 import TableData from "./screens/ScannedData";
 import Navigation from "./screens/Navigation"
 
@@ -40,15 +41,6 @@ const bottomNavigation = createMaterialBottomTabNavigator({
       )
     }
   },
-  Pick: {
-    screen: RegestrationScreen,
-    navigationOptions: {
-      tabBarLabel: "",
-      tabBarIcon: ({ tintColor }) => (
-        <Icon name="ios-pin" color={tintColor} size={24} />
-      )
-    }
-  },
   Drop: {
     screen: Navigation,
     navigationOptions: {
@@ -57,12 +49,30 @@ const bottomNavigation = createMaterialBottomTabNavigator({
         <Icon name="ios-download" color={tintColor} size={24} />
       )
     }
+  },
+  Pick : {
+    screen: Navigation,
+    navigationOptions: {
+      tabBarLabel: "",
+      tabBarIcon: ({ tintColor }) => (
+        <Icon name="ios-pin" color={tintColor} size={24} />
+      )
+    }
   }
 });
 
 const ProfileNavigation = createDrawerNavigator(
   {
-    bottomNavigation
+    bottomNavigation,
+    Register: {
+      screen: RegestrationScreen
+    },
+    Login: {
+      screen: Login
+    },
+    Table: {
+      screen: TableData
+    }
   },
   {
     contentComponent: Custom_Side_Menu,
@@ -70,7 +80,7 @@ const ProfileNavigation = createDrawerNavigator(
   }
 );
 
-const Navigator = createAppContainer(ProfileNavigation, bottomNavigation);
+const Navigator = createAppContainer(ProfileNavigation);
 
 export default function App() {
   return <Navigator />;
