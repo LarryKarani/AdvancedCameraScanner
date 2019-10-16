@@ -115,10 +115,20 @@ class CameraScanner extends React.Component {
     return (
       <Card
         image={{ uri: image }}
-        containerStyle={{ marginTop: 40, width: 250}}
+        containerStyle={{
+          marginTop: 40,
+          width: 360,
+          padding: 10,
+          borderRadius: 7
+        }}
+        imageStyle={{
+          width: 200,
+          height: 250
+
+        }}
       >
         <View style={{ marginBottom: 20 }}>
-        {this.state.googleResponse && (
+          {this.state.googleResponse && (
             <FlatList
               data={this.state.googleResponse.responses[0].labelAnnotations}
               extraData={this.state}
@@ -127,50 +137,22 @@ class CameraScanner extends React.Component {
             />
           )}
         </View>
-        <Button
-          icon={<Icon name="g-translate" color="#ffffff" />}
-          buttonStyle={{
-            borderRadius: 0,
-            marginLeft: 0,
-            marginRight: 0,
-            marginBottom: 0
-          }}
-          title="Analyze"
-          onPress={() => this.submitToGoogle()}
-        />
+        {!this.state.googleResponse ? (
+          <Button
+            icon={<Icon name="g-translate" color="#ffffff" />}
+            buttonStyle={{
+              borderRadius: 0,
+              marginLeft: 0,
+              marginRight: 0,
+              marginBottom: 0,
+              borderRadius: 7,
+              backgroundColor: "#59cbbd"
+            }}
+            title="Analyze"
+            onPress={() => this.submitToGoogle()}
+          />
+        ) : null}
       </Card>
-      // <View>
-      //   <View
-      //     style={{
-      //       marginTop: 40
-      //     }}
-      //   >
-      //     <Image source={{ uri: image }} style={{ width: 250, height: 250 }} />
-      //   </View>
-      //   {image && (
-      //     <TouchableOpacity
-      //       style={styles.button}
-      //       onPress={() => this.submitToGoogle()}
-      //     >
-      //       <Text style={styles.btntext}>Analyze!</Text>
-      //     </TouchableOpacity>
-      //   )}
-      //   <Text
-      //     onPress={this._copyToClipboard}
-      //     onLongPress={this._share}
-      //     style={{ paddingVertical: 10, paddingHorizontal: 10 }}
-      //   />
-      //   <View>
-      //     {this.state.googleResponse && (
-      //       <FlatList
-      //         data={this.state.googleResponse.responses[0].labelAnnotations}
-      //         extraData={this.state}
-      //         keyExtractor={this._keyExtractor}
-      //         renderItem={({ item }) => <Text>{item.description}</Text>}
-      //       />
-      //     )}
-      //   </View>
-      // </View>
     );
   };
 
@@ -354,7 +336,7 @@ const styles = StyleSheet.create({
   button: {
     marginTop: 15,
     marginBottom: 20,
-    padding: 10,
+    padding: 7,
     backgroundColor: "#59cbbd",
     borderRadius: 10,
     alignItems: "center",

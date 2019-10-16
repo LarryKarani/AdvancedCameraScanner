@@ -1,13 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Table, Row, Rows } from 'react-native-table-component';
 
-import Button from "../components/Button";
-
-export default class ExampleOne extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
+import { Button, Icon } from "react-native-elements";
+import { withNavigation } from "react-navigation";
+class ExampleOne extends React.Component {
+    state = {
       tableHead: ["Item no", "Descript", "MTL", "QTY", "RV"],
       tableData: [
         ["001", "Juice 500ml bottle", "PET", "1",0.75],
@@ -18,7 +16,6 @@ export default class ExampleOne extends Component {
         ["Total", " ", " ", " ", " $7.50"]
       ]
     };
-  }
 
   render() {
     const state = this.state;
@@ -33,12 +30,40 @@ export default class ExampleOne extends Component {
           <Rows data={state.tableData} textStyle={styles.text} />
         </Table>
 
-        <Button text="SELL" />
-        <Button text="HOLD"/>
+        <Button
+          title="SELL"
+          buttonStyle={{
+            borderRadius: 0,
+            marginLeft: 0,
+            marginRight: 0,
+            marginBottom: 0,
+            borderRadius: 7,
+            backgroundColor: "#59cbbd",
+            marginTop: 20,
+            width: 100,
+            alignSelf: "center"
+          }}
+        />
+        <Button
+          title="HOLD"
+          buttonStyle={{
+            borderRadius: 0,
+            marginLeft: 0,
+            marginRight: 0,
+            marginBottom: 0,
+            borderRadius: 7,
+            backgroundColor: "#59cbbd",
+            marginTop: 20,
+            width: 100,
+            alignSelf: "center"
+          }}
+        />
       </View>
     );
   }
 }
+
+export default withNavigation(ExampleOne);
 
 const styles = StyleSheet.create({
   container: {
