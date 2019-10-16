@@ -17,6 +17,7 @@ import uuid from "uuid";
 import Environment from "../config/environment";
 import firebase from "../config/firebase";
 import { withNavigation } from "react-navigation";
+import { Button, Card, Icon } from "react-native-elements";
 
 
 class CameraScanner extends React.Component {
@@ -44,7 +45,7 @@ class CameraScanner extends React.Component {
         contentContainerStyle={styles.contentContainer}
       >
         <View style={styles.getStartedContainer}>
-          {image ? null : (
+          {image || this.state.uploading ? null : (
             <TouchableOpacity style={styles.balance}>
               <Text style={styles.getStartedText}>Balance $ 46</Text>
             </TouchableOpacity>
@@ -57,17 +58,20 @@ class CameraScanner extends React.Component {
         </View>
 
         <View style={styles.bottom}>
-          <TouchableOpacity style={styles.button} onPress={this._takePhoto}>
+          <TouchableOpacity style={styles.button} onPress={this._pickImage}>
             <Text style={styles.btntext}>{!image ? "Scan" : "Scan again"}</Text>
           </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => {
-              this.props.navigation.navigate("Table");
-            }}
-          >
-            <Text style={styles.btntext}>Finish</Text>
-          </TouchableOpacity>
+
+          {image && (
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => {
+                this.props.navigation.navigate("Table");
+              }}
+            >
+              <Text style={styles.btntext}>Finish</Text>
+            </TouchableOpacity>
+          )}
         </View>
       </View>
     );
@@ -109,29 +113,12 @@ class CameraScanner extends React.Component {
     }
 
     return (
-      <View>
-        <View
-          style={{
-            marginTop: 40
-          }}
-        >
-          <Image source={{ uri: image }} style={{ width: 250, height: 250 }} />
-        </View>
-        {image && (
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => this.submitToGoogle()}
-          >
-            <Text style={styles.btntext}>Analyze!</Text>
-          </TouchableOpacity>
-        )}
-        <Text
-          onPress={this._copyToClipboard}
-          onLongPress={this._share}
-          style={{ paddingVertical: 10, paddingHorizontal: 10 }}
-        />
-        <View>
-          {this.state.googleResponse && (
+      <Card
+        image={{ uri: image }}
+        containerStyle={{ marginTop: 40, width: 250}}
+      >
+        <View style={{ marginBottom: 20 }}>
+        {this.state.googleResponse && (
             <FlatList
               data={this.state.googleResponse.responses[0].labelAnnotations}
               extraData={this.state}
@@ -140,7 +127,50 @@ class CameraScanner extends React.Component {
             />
           )}
         </View>
-      </View>
+        <Button
+          icon={<Icon name="g-translate" color="#ffffff" />}
+          buttonStyle={{
+            borderRadius: 0,
+            marginLeft: 0,
+            marginRight: 0,
+            marginBottom: 0
+          }}
+          title="Analyze"
+          onPress={() => this.submitToGoogle()}
+        />
+      </Card>
+      // <View>
+      //   <View
+      //     style={{
+      //       marginTop: 40
+      //     }}
+      //   >
+      //     <Image source={{ uri: image }} style={{ width: 250, height: 250 }} />
+      //   </View>
+      //   {image && (
+      //     <TouchableOpacity
+      //       style={styles.button}
+      //       onPress={() => this.submitToGoogle()}
+      //     >
+      //       <Text style={styles.btntext}>Analyze!</Text>
+      //     </TouchableOpacity>
+      //   )}
+      //   <Text
+      //     onPress={this._copyToClipboard}
+      //     onLongPress={this._share}
+      //     style={{ paddingVertical: 10, paddingHorizontal: 10 }}
+      //   />
+      //   <View>
+      //     {this.state.googleResponse && (
+      //       <FlatList
+      //         data={this.state.googleResponse.responses[0].labelAnnotations}
+      //         extraData={this.state}
+      //         keyExtractor={this._keyExtractor}
+      //         renderItem={({ item }) => <Text>{item.description}</Text>}
+      //       />
+      //     )}
+      //   </View>
+      // </View>
     );
   };
 
