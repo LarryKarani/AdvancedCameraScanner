@@ -47,7 +47,7 @@ class CameraScanner extends React.Component {
         <View style={styles.getStartedContainer}>
           {image || this.state.uploading ? null : (
             <TouchableOpacity style={styles.balance}>
-              <Text style={styles.getStartedText}>Balance $ 46</Text>
+              <Text style={styles.getStartedText}>Balance $46 </Text>
             </TouchableOpacity>
           )}
         </View>
@@ -89,6 +89,7 @@ class CameraScanner extends React.Component {
 
   _maybeRenderUploadingOverlay = () => {
     if (this.state.uploading) {
+      console.log('yessss')
       return (
         <View
           style={[
@@ -249,7 +250,6 @@ class CameraScanner extends React.Component {
         }
       );
       let responseJson = await response.json();
-      console.log(responseJson);
       this.setState({
         googleResponse: responseJson,
         uploading: false
@@ -291,7 +291,7 @@ export default withNavigation(CameraScanner);
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#455A64",
+    backgroundColor: "#fff",
     paddingBottom: 10
   },
   developmentModeText: {

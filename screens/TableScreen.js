@@ -70,9 +70,9 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 16,
     paddingTop: 30,
-    backgroundColor: "#455A64",
+    backgroundColor: "#fff",
     marginTop: 30,
   },
   head: { height: 40,},
-  text: { margin: 6, color: "#fff", fontWeight: "bold"}
+  text: { margin: 6, color: "black", fontWeight: "bold"}
 });
