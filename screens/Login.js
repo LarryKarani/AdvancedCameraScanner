@@ -6,7 +6,6 @@ import { withNavigation } from "react-navigation";
 import InputBox from "../components/InputBox";
 import Button from "../components/Button";
 
-
 //styles
 import styles from "../constants/style";
 
@@ -14,9 +13,6 @@ class Login extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={ScreenStyles.headerWrapper}>
-          <Text style={ScreenStyles.header}>Login</Text>
-        </View>
         <InputBox placeholder="Email" />
         <InputBox placeholder="Password" />
         <Button
@@ -37,11 +33,8 @@ const ScreenStyles = StyleSheet.create({
     marginBottom: 40
   },
   header: {
-    fontSize: 24,
-    color: "#fff",
-    paddingBottom: 10,
-    borderBottomColor: "#199187",
-    borderBottomWidth: 1
+    fontSize: 15,
+    color: "black"
   }
 });
 

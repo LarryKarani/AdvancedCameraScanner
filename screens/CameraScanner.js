@@ -19,7 +19,6 @@ import firebase from "../config/firebase";
 import { withNavigation } from "react-navigation";
 import { Button, Card, Icon } from "react-native-elements";
 
-
 class CameraScanner extends React.Component {
   state = {
     image: null,
@@ -44,13 +43,48 @@ class CameraScanner extends React.Component {
         style={styles.container}
         contentContainerStyle={styles.contentContainer}
       >
-        <View style={styles.getStartedContainer}>
-          {image || this.state.uploading ? null : (
-            <TouchableOpacity style={styles.balance}>
-              <Text style={styles.getStartedText}>Balance $46 </Text>
-            </TouchableOpacity>
-          )}
-        </View>
+        {image || this.state.uploading ? null : (
+          <TouchableOpacity style={styles.balance}>
+            <Text style={styles.getStartedText}>Balance: $46.00 </Text>
+          </TouchableOpacity>
+        )}
+        {this.state.uploading && (
+           <View
+           title="loading"
+           style={{
+             flex:1,
+             marginTop: 20,
+             width: 360,
+             padding: 10,
+             borderRadius: 7,
+             alignItems: 'center',
+             height: 300,
+           }}
+         >
+
+
+         </View>
+      
+        )}
+
+        {!image && !this.state.uploading && (
+          <Card
+            title="Advanced Scanner"
+            image={require("../assets/back.jpeg")}
+            containerStyle={{
+              marginTop: 20,
+              width: 360,
+              padding: 10,
+              borderRadius: 7,
+            }}
+            imageStyle={{
+              width: 200,
+              height: 300,
+              borderRadius: 20
+            }}
+          >
+          </Card>
+        )}
 
         <View style={styles.helpContainer}>
           {this._maybeRenderImage()}
@@ -89,7 +123,7 @@ class CameraScanner extends React.Component {
 
   _maybeRenderUploadingOverlay = () => {
     if (this.state.uploading) {
-      console.log('yessss')
+      console.log("yessss");
       return (
         <View
           style={[
@@ -101,7 +135,7 @@ class CameraScanner extends React.Component {
             }
           ]}
         >
-          <ActivityIndicator color="#fff" animating size="large" />
+          <ActivityIndicator color="red" animating size="large" />
         </View>
       );
     }
@@ -119,23 +153,30 @@ class CameraScanner extends React.Component {
         containerStyle={{
           marginTop: 40,
           width: 360,
-          padding: 10,
+          padding: 30,
           borderRadius: 7
         }}
         imageStyle={{
           width: 200,
-          height: 250
+          height: 250,
+          borderRadius: 20
 
         }}
       >
-        <View style={{ marginBottom: 20 }}>
+        <View style={{ marginBottom: 20 , alignItems: 'center' }}>
           {this.state.googleResponse && (
-            <FlatList
-              data={this.state.googleResponse.responses[0].labelAnnotations}
-              extraData={this.state}
-              keyExtractor={this._keyExtractor}
-              renderItem={({ item }) => <Text>{item.description}</Text>}
-            />
+            <View>
+              <Text>Descr: Suavitel 500ML</Text>
+              <Text>Mtl: HDPE</Text>
+              <Text>QTY: 1</Text>
+              <Text>RV: 0.75</Text>
+            </View>
+            // <FlatList
+            //   data={this.state.googleResponse.responses[0].labelAnnotations}
+            //   extraData={this.state}
+            //   keyExtractor={this._keyExtractor}
+            //   renderItem={({ item }) => <Text>{item.description}</Text>}
+            // />
           )}
         </View>
         {!this.state.googleResponse ? (
@@ -292,7 +333,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    paddingBottom: 10
+    paddingBottom: 10,
+    alignItems: "center"
   },
   developmentModeText: {
     marginBottom: 20,
@@ -314,7 +356,7 @@ const styles = StyleSheet.create({
     color: "green",
     lineHeight: 24,
     textAlign: "center",
-    marginTop: 50,
+    marginTop: 10,
     fontWeight: "bold",
     borderRadius: 20
   },

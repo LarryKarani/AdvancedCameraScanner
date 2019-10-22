@@ -25,11 +25,10 @@ class Custom_Side_Menu extends React.Component {
         <Text
           style={{
             marginTop: 5,
-            fontSize: 15,
             color: "#222222"
           }}
         >
-          Larry Karani
+          Larry k
         </Text>
 
         <View

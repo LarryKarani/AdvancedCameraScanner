@@ -6,8 +6,8 @@ const InputBox = props => {
     <TextInput
       style={styles.InputBox}
       placeholder={props.placeholder}
-      placeholderTextColor={"#fff"}
-      selectionColor={"#fff"}
+      placeholderTextColor={"black"}
+      selectionColor={"black"}
       secureTextEntry={props.placeholder === "Password" ? true : false}
     />
   );
@@ -16,10 +16,9 @@ const InputBox = props => {
 const styles = StyleSheet.create({
   InputBox: {
     alignSelf: "stretch",
-    height: 40,
     marginBottom: 30,
-    color: "#fff",
-    borderBottomColor: "#f8f8f8",
+    color: "black",
+    borderBottomColor: "#59cbbd",
     borderBottomWidth: 1
   }
 });
