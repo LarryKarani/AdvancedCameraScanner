@@ -10,3 +10,6 @@ npm-debug.*
 web-build/
 web-report/
 config/
+.expo-shared/assets.json
+.vscode/launch.json
+.watchmanconfig

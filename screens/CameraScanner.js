@@ -16,6 +16,7 @@ import * as Permissions from "expo-permissions";
 import uuid from "uuid";
 import Environment from "../config/environment";
 import firebase from "../config/firebase";
+import 'firebase/storage'
 import { withNavigation } from "react-navigation";
 import { Button, Card, Icon } from "react-native-elements";
 
